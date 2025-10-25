@@ -1,5 +1,8 @@
 # QR Code Generator 🔲✨
 
+live preview
+https://piyushkadam96k.github.io/qr-code/
+
 Generate beautiful QR codes with style and flair! 
 
 ## ✨ Features
@@ -88,3 +91,4 @@ MIT License - Feel free to modify and share! ⚖️
 
 ---
 Made with ❤️ using Flask and Python 🐍
+
