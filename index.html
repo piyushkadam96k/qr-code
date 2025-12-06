@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator Pro</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- QR Library -->
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <!-- Header Actions -->
+        <header class="header-actions">
+            <div class="header-left">
+                <a href="https://github.com/piyushkadam96k" target="_blank" class="github-btn"
+                    aria-label="GitHub Profile">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
+                    <span>piyushkadam96k</span>
+                </a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <span class="icon">🌙</span>
+                </button>
+            </div>
+
+            <div class="header-right">
+                <div class="visitor-badge">
+                    <span class="visitor-text">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-5 h-5 text-indigo-500">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span id="visitor-count">Loading...</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- QR Type Navigation -->
+        <div class="qr-type-tabs">
+            <div class="qr-type-tab active" data-type="url">
+                <span class="icon">🌐</span> Website
+            </div>
+            <div class="qr-type-tab" data-type="text">
+                <span class="icon">📝</span> Text
+            </div>
+            <div class="qr-type-tab" data-type="wifi">
+                <span class="icon">📶</span> WiFi
+            </div>
+            <div class="qr-type-tab" data-type="contact">
+                <span class="icon">👤</span> Contact
+            </div>
+            <div class="qr-type-tab" data-type="email">
+                <span class="icon">📧</span> Email
+            </div>
+            <div class="qr-type-tab" data-type="phone">
+                <span class="icon">📞</span> Phone
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <!-- Left Column: Inputs -->
+            <div class="left-column">
+                <!-- Content Card -->
+                <div class="glass-card step-section">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Content</div>
+                    </div>
+
+                    <!-- Sections -->
+                    <div id="url-section" class="qr-section">
+                        <div class="form-group">
+                            <label class="form-label">Website URL</label>
+                            <input type="url" id="text" class="form-input"
+                                placeholder="https://www.instagram.com/piyush_kadam96k" value="">
+                        </div>
+                    </div>
+
+                    <div id="text-section" class="qr-section hidden">
+                        <div class="form-group">
+                            <label class="form-label">Plain Text</label>
+                            <textarea id="text_content" class="form-input" rows="4"
+                                placeholder="Enter text here..."></textarea>
+                        </div>
+                    </div>
+
+                    <div id="wifi-section" class="qr-section hidden">
+                        <div class="form-group">
+                            <label class="form-label">Network Name (SSID)</label>
+                            <input type="text" id="wifi_ssid" class="form-input" placeholder="WiFi Name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <input type="text" id="wifi_password" class="form-input" placeholder="WiFi Password">
+                        </div>
+                    </div>
+
+                    <div id="contact-section" class="qr-section hidden">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" id="contact_name" class="form-input" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" id="contact_phone" class="form-input" placeholder="+1 234 567 890">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="contact_email" class="form-input" placeholder="john@example.com">
+                        </div>
+                    </div>
+
+                    <div id="email-section" class="qr-section hidden">
+                        <div class="form-group">
+                            <label class="form-label">Recipient</label>
+                            <input type="email" id="email_to" class="form-input" placeholder="recipient@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <input type="text" id="email_subject" class="form-input" placeholder="Subject">
+                        </div>
+                    </div>
+
+                    <div id="phone-section" class="qr-section hidden">
+                        <div class="form-group">
+                            <label class="form-label">Number</label>
+                            <input type="tel" id="phone_number" class="form-input" placeholder="+1 234 567 890">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Card -->
+                <div class="glass-card step-section">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Customization</div>
+                    </div>
+
+                    <div class="design-tabs">
+                        <div class="design-tab active" data-tab="shape">Shapes</div>
+                        <div class="design-tab" data-tab="colors">Colors</div>
+                    </div>
+
+                    <div id="shape-section" class="design-section">
+                        <div class="shape-options">
+                            <!-- Using simple divs for preview visualization in UI, logic handled in JS options -->
+                            <div class="shape-option active" data-shape="square" title="Square">
+                                <div style="width:20px;height:20px;background:currentColor;border-radius:2px"></div>
+                            </div>
+                            <div class="shape-option" data-shape="rounded" title="Rounded">
+                                <div style="width:20px;height:20px;background:currentColor;border-radius:6px"></div>
+                            </div>
+                            <div class="shape-option" data-shape="circle" title="Dots">
+                                <div style="width:20px;height:20px;background:currentColor;border-radius:50%"></div>
+                            </div>
+                            <div class="shape-option" data-shape="classy" title="Classy">
+                                <div style="width:20px;height:20px;background:currentColor;border-radius:2px 10px">
+                                </div>
+                            </div>
+                            <div class="shape-option" data-shape="diamond" title="Diamond">
+                                <div
+                                    style="width:20px;height:20px;background:currentColor;transform:rotate(45deg);border-radius:4px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="colors-section" class="design-section hidden">
+                        <div class="color-inputs">
+                            <div>
+                                <label class="form-label">Dots Color</label>
+                                <div class="color-input-wrapper">
+                                    <input type="color" id="border-color" class="color-picker" value="#000000">
+                                    <span class="color-hex" id="border-hex">#000000</span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Background</label>
+                                <div class="color-input-wrapper">
+                                    <input type="color" id="background-color" class="color-picker" value="#ffffff">
+                                    <span class="color-hex" id="background-hex">#FFFFFF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Preview -->
+            <div class="right-column">
+                <div class="qr-preview glass-card">
+                    <div class="step-header" style="justify-content: center; margin-bottom: 20px;">
+                        <div class="step-title">Preview</div>
+                    </div>
+
+                    <div id="qr-code-container"></div>
+
+                    <button type="button" class="download-btn" onclick="downloadQR()">
+                        Download PNG
+                    </button>
+                    <p style="margin-top: 15px; font-size: 13px; color: var(--text-secondary);">
+                        High quality 300x300px
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <footer class="footer">
+        <p>&copy; 2025 QR Pro. All rights reserved. Do not copy this website.</p>
+    </footer>
+</body>
+
+</html>
