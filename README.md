@@ -1,8 +1,5 @@
 # QR Code Generator 🔲✨
 
-live preview
-https://piyushkadam96k.github.io/qr-code/
-
 Generate beautiful QR codes with style and flair! 
 
 ## ✨ Features
